@@ -29,14 +29,14 @@ button,input,select,textarea{font:inherit} button{cursor:pointer} a{color:var(--
 .missedBox{margin-top:14px}.missedTerms{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.missedTerms .chip{padding:6px 10px}
 
 .cardPreview{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
-.cardPreview iframe{display:block;width:100%;height:780px;border:0;background:#fff}
+.cardPreviewStage{position:relative;width:100%;overflow:hidden;background:#eef2f7;min-height:360px}
+.cardPreview iframe{position:absolute;left:0;top:0;width:1240px;height:1754px;border:0;background:#fff;transform-origin:0 0;overflow:hidden}
 .cardPreviewLabel{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);background:#f8fbff;flex-wrap:wrap}
 .cardPreviewLabel b{font-size:16px}.cardLinks{display:flex;gap:8px;flex-wrap:wrap}.cardLinks a,.cardLinks button{border:1px solid var(--line);background:#fff;color:var(--pri);border-radius:10px;padding:8px 11px;font-weight:800;text-decoration:none;cursor:pointer}
 .cardLinks .primary{background:var(--pri);color:#fff;border-color:var(--pri)}
 .summaryWrapV7{display:grid;grid-template-columns:1fr;gap:16px}.summaryIntro{background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px}
 .fileNote{margin-top:12px;padding:10px 12px;background:#fff8e8;border:1px solid #f0d59a;border-radius:12px;font-size:14px;color:#694b10}
-@media(max-width:850px){.cardPreview iframe{height:640px}}
-@media(max-width:560px){.cardPreview iframe{height:520px}.cardPreviewLabel{align-items:flex-start}.cardLinks{width:100%}.cardLinks a,.cardLinks button{flex:1;text-align:center}}
+@media(max-width:560px){.cardPreviewLabel{align-items:flex-start}.cardLinks{width:100%}.cardLinks a,.cardLinks button{flex:1;text-align:center}}
 
 @media(max-width:850px){.summaryWrap,.miniGuide{grid-template-columns:1fr}}
 @media print{.summaryActions,.missedBox,.deskPrintOnly{display:none!important}}
@@ -70,7 +70,7 @@ button,input,select,textarea{font:inherit} button{cursor:pointer} a{color:var(--
   </div>
   <div class="cardPreview">
     <div class="cardPreviewLabel"><b>실전 요약 카드 미리보기</b><div class="cardLinks"><a href="practical_card.html" target="_blank" rel="noopener">크게 보기</a><a class="primary" href="desk_card.html" target="_blank" rel="noopener">책상용 카드 인쇄</a></div></div>
-    <iframe id="practicalCardFrame" src="practical_card.html" title="Claude Code 핵심 11 실전 요약 카드"></iframe>
+    <div class="cardPreviewStage" id="practicalCardStage"><iframe id="practicalCardFrame" src="practical_card.html?embed=1" scrolling="no" title="Claude Code 핵심 11 실전 요약 카드"></iframe></div>
   </div>
 </div>
 </section>
@@ -167,6 +167,18 @@ $('#search').addEventListener('keydown',e=>{if(e.key==='Enter'){clearTimeout(mis
 $('#search').addEventListener('blur',()=>{clearTimeout(missedTimer);maybeRecordMissed()});
 $('#resetSearch').onclick=()=>{$('#search').value='';state.dictLevel='all';renderCategories();filterDict()};
 document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const id=b.dataset.go;document.querySelectorAll('[data-go]').forEach(x=>x.classList.toggle('on',x===b));$('#'+id).scrollIntoView({behavior:'smooth'})});
+function fitPracticalPreview(){
+  const stage=$('#practicalCardStage'), frame=$('#practicalCardFrame');
+  if(!stage||!frame)return;
+  const baseW=1240, baseH=1754;
+  const scale=Math.min(1, stage.clientWidth/baseW);
+  frame.style.transform=`scale(${scale})`;
+  stage.style.height=Math.ceil(baseH*scale)+'px';
+}
+const practicalFrame=$('#practicalCardFrame');
+if(practicalFrame)practicalFrame.addEventListener('load',fitPracticalPreview);
+window.addEventListener('resize',()=>{clearTimeout(window.__ccFitTimer);window.__ccFitTimer=setTimeout(fitPracticalPreview,100)});
+fitPracticalPreview();
 function openDeskCard(){window.open('desk_card.html','_blank','noopener')}
 function openPracticalCard(){window.open('practical_card.html','_blank','noopener')}
 $('#openDeskCard').onclick=openDeskCard;$('#openDeskCardTop').onclick=openDeskCard;$('#openPracticalCard').onclick=openPracticalCard;

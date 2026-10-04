@@ -10,7 +10,8 @@ h1{margin:0;text-align:center;font-size:52px;letter-spacing:-2px}.sub{text-align
 @media print{.toolbar{display:none!important}.stage{padding:0;background:#fff;overflow:visible}body{background:#fff}}
 @media(max-width:900px){.stage{zoom:.68}}
 @media(max-width:650px){.stage{zoom:.48}}
-</style></head><body><div class="toolbar"><button class="primary" onclick="window.print()">인쇄</button><button onclick="window.close()">창 닫기</button><span style="align-self:center;color:#526274;font:14px system-ui">Claude Code 핵심 11 실전 요약 카드</span></div><div class="stage"><div class="page">
+body.embed .toolbar{display:none!important} body.embed .stage{padding:0!important;background:#fff!important;overflow:hidden!important;zoom:1!important}
+</style></head><body><script>if(new URLSearchParams(location.search).get("embed")==="1")document.body.classList.add("embed");</script><div class="toolbar"><button class="primary" onclick="window.print()">인쇄</button><button onclick="window.close()">창 닫기</button><span style="align-self:center;color:#526274;font:14px system-ui">Claude Code 핵심 11 실전 요약 카드</span></div><div class="stage"><div class="page">
 <h1>Claude Code 핵심 11 실전 요약 카드</h1>
 <div class="sub">처음 한 번 Git을 준비하고, 이후에는 같은 안전 흐름을 반복합니다.</div>
 <div class="flow">처음 한 번: Git 저장소 준비 → 이후 매번: /plan → 수정 → git status → git diff → 테스트 → git commit</div>
