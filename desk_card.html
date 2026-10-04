@@ -1,0 +1,32 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><style>
+*{box-sizing:border-box} body{margin:0;background:#fff;font-family:'Noto Sans CJK KR','Noto Sans KR','DejaVu Sans',sans-serif;color:#0d2340}.page{width:1240px;height:877px;padding:24px 28px;background:#fff}.outer{border:3px solid #5a8dbc;border-radius:20px;overflow:hidden;height:100%}header{background:#eaf5ff;padding:14px 22px 12px;text-align:center;border-bottom:2px solid #9fc4e3}h1{font-size:38px;margin:0;letter-spacing:-1px}.sub{font-size:18px;color:#34485e;margin-top:3px}.body{padding:14px 18px}.setup{display:grid;grid-template-columns:175px 1fr;gap:12px;background:#fff4df;border:2px solid #efc77a;border-radius:14px;padding:10px 14px;margin-bottom:10px;align-items:center}.setup b{font-size:20px;color:#995600}.setup .flow{font-size:18px;font-weight:800}.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px 14px}.row{display:grid;grid-template-columns:38px 200px 1fr;gap:8px;align-items:center;border-bottom:1px solid #ccdae6;padding:7px 4px;min-height:48px}.num{width:34px;height:34px;border-radius:50%;background:#5b86ad;color:white;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}.cmd{font-size:18px;font-weight:900}.desc{font-size:16px;line-height:1.35}.sectionTitle{grid-column:1/-1;background:#edf6ff;border-radius:10px;padding:7px 10px;font-size:19px;font-weight:900;color:#0c3f73}.bottom{display:grid;grid-template-columns:1.1fr .9fr;gap:12px;margin-top:10px}.box{border:2px solid #b8d2e8;border-radius:13px;padding:10px 12px}.box h3{font-size:18px;margin:0 0 7px}.steps{display:flex;align-items:center;gap:7px;font-size:16px;font-weight:800;flex-wrap:wrap}.pill{padding:7px 9px;border:1px solid #cbdce9;border-radius:9px;background:#f9fcff}.arrow{font-size:18px;color:#6284a3}.memorize{margin-top:10px;background:#17446f;color:#fff;border-radius:12px;padding:9px 12px;text-align:center;font-weight:900;font-size:18px}.tiny{font-size:14px;color:#5b6775}.gitrow{background:#fff8ea;border-radius:10px;padding:5px}.gitrow .num{background:#e78723}.gitrow .cmd{color:#984c00}
+
+@page{size:A4 landscape;margin:8mm}
+.toolbar{position:sticky;top:0;z-index:10;display:flex;gap:8px;justify-content:center;padding:10px;background:#f2f5fa;border-bottom:1px solid #d8e1eb}
+.toolbar button{font:700 15px system-ui,-apple-system,'Malgun Gothic',sans-serif;border:1px solid #b9c7d8;background:#fff;border-radius:9px;padding:8px 12px;cursor:pointer}
+.toolbar .primary{background:#245bdb;color:#fff;border-color:#245bdb}
+.stage{overflow:auto;background:#eef2f7;padding:12px}
+@media print{.toolbar{display:none!important}.stage{padding:0;background:#fff;overflow:visible}body{background:#fff}}
+@media(max-width:900px){.stage{zoom:.68}}
+@media(max-width:650px){.stage{zoom:.48}}
+</style></head><body><div class="toolbar"><button class="primary" onclick="window.print()">인쇄</button><button onclick="window.close()">창 닫기</button><span style="align-self:center;color:#526274;font:14px system-ui">Claude Code 핵심 11 책상용 요약 카드</span></div><div class="stage"><div class="page"><div class="outer"><header><h1>Claude Code 핵심 11 책상용 요약 카드</h1><div class="sub">모니터 옆에 붙여 두는 실전 치트시트 · 처음 Git 준비 → 매번 /plan → 수정 → status → diff → test → commit</div></header><div class="body">
+<div class="setup"><b>처음 한 번: Git 저장소 준비</b><div class="flow">git status → 저장소가 아니면 git init → .gitignore 확인 → 필요한 파일 add → git commit -m "첫 기준 저장"</div></div>
+<div class="grid">
+<div class="sectionTitle">① 시작과 계획</div>
+<div class="row"><div class="num">1</div><div class="cmd">/init + CLAUDE.md</div><div class="desc">새 프로젝트 시작. 오래 지킬 규칙부터 적기.</div></div>
+<div class="row"><div class="num">2</div><div class="cmd">/plan</div><div class="desc">중요한 수정 전, 먼저 계획·범위·테스트 확인.</div></div>
+<div class="row gitrow"><div class="num">3</div><div class="cmd">Git 준비 + status/diff</div><div class="desc">처음엔 Git 저장소와 첫 기준점 준비. 이후 status=어디가 바뀜, diff=어떻게 바뀜.</div></div>
+<div class="row"><div class="num">4</div><div class="cmd">git commit</div><div class="desc">테스트가 괜찮으면 좋은 상태를 저장점으로 남기기.</div></div>
+<div class="sectionTitle">② 되돌리기와 이어가기</div>
+<div class="row"><div class="num">5</div><div class="cmd">Esc · Rewind · Git</div><div class="desc">Esc=즉시 중단 · Rewind=최근 Claude 편집 · 오래된 변경/터미널 삭제·이동=Git 복구.</div></div>
+<div class="row"><div class="num">6</div><div class="cmd">/context · /compact · /clear</div><div class="desc">context=확인 · compact=압축 · clear=완전히 새 작업.</div></div>
+<div class="row"><div class="num">7</div><div class="cmd">/resume</div><div class="desc">어제 하던 작업 이어가기.</div></div>
+<div class="sectionTitle">③ 안전하게 작업하기</div>
+<div class="row"><div class="num">8</div><div class="cmd">권한·범위 통제</div><div class="desc">작업 범위를 먼저 좁히고 중요한 변경은 Plan Mode에서 확인.</div></div>
+<div class="row"><div class="num">9</div><div class="cmd">Esc · Shift+Tab · /help</div><div class="desc">Esc=멈춤 · Shift+Tab=권한 모드 전환 · /help=현재 버전 도움말.</div></div>
+<div class="row"><div class="num">10</div><div class="cmd">최소 테스트</div><div class="desc">완료 보고 ≠ 테스트 통과. 수정 후 콘솔·핵심 기능·모바일·저장·인쇄 확인.</div></div>
+<div class="row"><div class="num">11</div><div class="cmd">개인정보·Secret</div><div class="desc">학생 정보·비밀번호·API Key·Token 공개 금지. .gitignore 활용.</div></div>
+</div>
+<div class="bottom"><div class="box"><h3>막히면 이렇게</h3><div class="steps"><span class="pill">1 Esc로 멈추기</span><span class="arrow">→</span><span class="pill">2 git diff로 실제 변경 확인</span><span class="arrow">→</span><span class="pill">3 /help·기술 사전에서 찾기</span></div></div><div class="box"><h3>매번 반복</h3><div class="steps"><span class="pill">/plan</span><span class="arrow">→</span><span class="pill">수정</span><span class="arrow">→</span><span class="pill">status</span><span class="arrow">→</span><span class="pill">diff</span><span class="arrow">→</span><span class="pill">test</span><span class="arrow">→</span><span class="pill">commit</span></div></div></div>
+<div class="memorize">핵심 암기: 처음엔 Git 준비 · 매번은 /plan → 수정 → status → diff → test → commit</div>
+</div></div></div></div></body></html>
